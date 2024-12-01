@@ -12,25 +12,26 @@ class SUN_BOT:
         self.driver = webdriver.Chrome(service=self.servico)
 
 
-    def AcessarSite(self, link):
+    def AcessarSite(self):
+        link = 'https://web.whatsapp.com/'
         self.driver.get(link)
         print("Aguardando QRCode")
         sleep(30)
 
     def EnviarMensagem(self, numero, mensagens):
-        try:
-            # Procurar contato
-            url = f"https://web.whatsapp.com/send?phone={numero}"
-            self.driver.get(url)
-            sleep(10)
+        # Procurar contato
+        url = f"https://web.whatsapp.com/send?phone={numero}"
+        self.driver.get(url)
+        sleep(10)
 
-            # Mensagem
-            mensagem = self.driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')
-            mensagem.click()
-            mensagem.send_keys(mensagens)
-            mensagem.send_keys(Keys.RETURN)
-            sleep(2)
+        # Mensagem
+        mensagem = self.driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')
+        mensagem.click()
+        mensagem.send_keys(mensagens)
+        mensagem.send_keys(Keys.RETURN)
+        sleep(2)
 
-        except KeyboardInterrupt:
-            print("Sistema encerrado")
+    def EncerrarPrograma(self):
+        self.driver.quit()
+
 
