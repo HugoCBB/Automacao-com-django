@@ -22,7 +22,7 @@ class SUN_BOT:
         # Procurar contato
         url = f"https://web.whatsapp.com/send?phone={numero}"
         self.driver.get(url)
-        sleep(10)
+        sleep(15)
 
         # Mensagem
         mensagem = self.driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')

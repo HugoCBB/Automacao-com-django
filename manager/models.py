@@ -15,7 +15,7 @@ class Cliente(models.Model):
 
 class Mensagem(models.Model):
     data = models.DateField(auto_now_add=True)
-    mensagem = models.CharField(max_length=500)
+    mensagem = models.TextField(max_length=500)
 
     def __str__(self):
         return self.mensagem

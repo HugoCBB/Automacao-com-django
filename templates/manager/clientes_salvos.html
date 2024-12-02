@@ -1,0 +1,41 @@
+{% extends 'shared/base.html' %} 
+{% load static %}  
+
+{% block titulo %}
+<title>Clientes Salvos</title>
+{% endblock %}
+
+{% block content %}
+    {% if clientes %}
+    <div style="justify-content: center;align-items: center;height: 500px;width: 500px;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Matriculado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                    <tr>
+                        <th scope="row">{{ cliente.id }}</th>
+                        <td>{{ cliente.nome }}</td>
+                        <td>{{ cliente.numero }}</td>
+                        <td>
+                            {% if cliente.matriculado == False %}    
+                                Cliente não matriculado
+                            {% else %}
+                                Aluno matriculado
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    
+{% endblock %}

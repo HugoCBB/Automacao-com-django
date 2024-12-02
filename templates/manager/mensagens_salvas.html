@@ -1,0 +1,37 @@
+{% extends 'shared/base.html' %} 
+{% load static %}  
+
+{% block titulo %}
+<title>Mensagens Salvas</title>
+{% endblock %}
+
+{% block content %}
+    {% if mensagem %}
+    <div style="justify-content: center;align-items: center;height: 500px;width: 500px;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Mensagem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mensagens in mensagem %}
+                <tr>
+                    <th scope="row">{{ mensagens.id }}</th>
+                    <td>{{ mensagens.data }}</td>
+                    <td>{{ mensagens.mensagem }}</td>
+                    
+                    <td>
+                        <a href="{%url 'enviar-mensagem' mensagens.id %}">Enviar mensagem</a>
+                    </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div style="justify-content: center;align-items: center;" class="collapse navbar-collapse" id="navbarNav">
+        <a class="navbar-brand" href="{% url 'home' %}">SISTEMA DE MENSAGEM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'adicionar-cliente' %}">Adicionar cliente</a>
+            </li>
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'adicionar-mensagens' %}">Adicionar mensagens</a>
+            </li>
+        
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'mensagens-salvas' %}">Mensagens Salvas</a>
+            </li>
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'clientes-salvos' %}">Clientes Salvos</a>
+            </li>
+        </ul>
+    </div>
+</nav>
