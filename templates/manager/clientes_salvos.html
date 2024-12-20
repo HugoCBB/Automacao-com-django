@@ -7,8 +7,8 @@
 
 {% block content %}
     {% if clientes %}
-    <div style="justify-content: center;align-items: center;height: 500px;width: 500px;">
-        <table class="table table-striped">
+    <div class="d-flex justify-content-center">
+        <table class="table table-striped" style="width: 70%">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -23,12 +23,12 @@
                         <th scope="row">{{ cliente.id }}</th>
                         <td>{{ cliente.nome }}</td>
                         <td>{{ cliente.numero }}</td>
+                        <td>{{ cliente.matriculado }} </td>
                         <td>
-                            {% if cliente.matriculado == False %}    
-                                Cliente não matriculado
-                            {% else %}
-                                Aluno matriculado
-                            {% endif %}
+                            <a href="{% url 'editar-cliente' cliente.id %}">Editar Cliente</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'deletar-cliente' cliente.id %}">Deletar Cliente</a>
                         </td>
                     </tr>
                 {% endfor %}

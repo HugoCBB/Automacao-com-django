@@ -16,13 +16,13 @@ class SUN_BOT:
         link = 'https://web.whatsapp.com/'
         self.driver.get(link)
         print("Aguardando QRCode")
-        sleep(30)
+        sleep(90)
 
     def EnviarMensagem(self, numero, mensagens):
         # Procurar contato
         url = f"https://web.whatsapp.com/send?phone={numero}"
         self.driver.get(url)
-        sleep(15)
+        sleep(10)
 
         # Mensagem
         mensagem = self.driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')

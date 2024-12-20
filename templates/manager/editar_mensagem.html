@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %} 
+{% load static %}  
+
+{% block titulo %}
+<title>Editar mensagem</title>
+{% endblock %}
+
+{% block content %}
+<div style="text-align: center;justify-content: center;">
+    <form action="{% url 'editar-mensagem' mensagem_id %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Editar</button>
+    </form>
+</div>
+{% endblock %}

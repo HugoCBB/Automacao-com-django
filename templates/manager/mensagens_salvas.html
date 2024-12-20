@@ -7,12 +7,12 @@
 
 {% block content %}
     {% if mensagem %}
-    <div style="justify-content: center;align-items: center;height: 500px;width: 500px;">
-        <table class="table table-striped">
+    <div class="d-flex justify-content-center">
+        <table class="table table-striped" style="width: 70%">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Data</th>
+                    <th scope="col">Data de criação</th>
                     <th scope="col">Mensagem</th>
                 </tr>
             </thead>
@@ -25,6 +25,12 @@
                     
                     <td>
                         <a href="{%url 'enviar-mensagem' mensagens.id %}">Enviar mensagem</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'editar-mensagem' mensagens.id %}">Editar Mensagem</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'deletar-mensagem' mensagens.id %}">Deletar Mensagem</a>
                     </td>
                     </tr>
                 {% endfor %}

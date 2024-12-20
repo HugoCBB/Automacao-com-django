@@ -46,7 +46,7 @@ def AdicionarMensagem(request):
 
 # Enviar mensagem
 def EnviarMensagens(request, mensagem_id):
-    clientes = Cliente.objects.filter(matriculado=False)
+    clientes = Cliente.objects.filter(matriculado='Não Matriculado')
     mensagem = get_object_or_404(Mensagem, pk=mensagem_id)
     try:
         resposta = SUN_BOT()
@@ -58,3 +58,32 @@ def EnviarMensagens(request, mensagem_id):
     finally:
         resposta.EncerrarPrograma()
     return HttpResponse('Mensagens enviadas')
+
+def EditarCliente(request, cliente_id):
+    cliente = Cliente.objects.get(id=cliente_id)
+    form = ClienteForm(instance=cliente)
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, instance=cliente)
+        form.save()
+        return redirect('clientes-salvos')
+    return render(request, 'manager/editar_cliente.html',{'form':form, 'cliente_id':cliente_id})
+
+def EditarMensagem(request, mensagem_id):
+    mensagem = Mensagem.objects.get(id=mensagem_id)
+    form = MensagemForm(instance=mensagem)
+    if request.method == 'POST':
+        form = MensagemForm(request.POST, instance=mensagem)
+        form.save()
+        return redirect('mensagens-salvas')
+    return render(request, 'manager/editar_mensagem.html',{'form':form, 'mensagem_id':mensagem_id})
+
+
+def DeletarCliente(request, cliente_id):
+    cliente = Cliente.objects.get(id=cliente_id)
+    cliente.delete()
+    return redirect('clientes-salvos')
+
+def DeletarMensagem(request, mensagem_id):
+    mensagem = Mensagem.objects.get(id=mensagem_id)
+    mensagem.delete()
+    return redirect('mensagens-salvas')
