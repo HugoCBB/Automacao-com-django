@@ -27,7 +27,7 @@ def AdicionarCliente(request):
 
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('clientes-salvos')
     return render(request, 'manager/clienteform.html',{'form':form})
 
 # Criar nova mensagem
@@ -39,7 +39,7 @@ def AdicionarMensagem(request):
 
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('mensagens-salvas')
 
     return render(request, 'manager/mensagemform.html',{'form':form})
 
@@ -53,11 +53,13 @@ def EnviarMensagens(request, mensagem_id):
         resposta.AcessarSite()
         for cliente in clientes:
             resposta.EnviarMensagem(cliente.numero, mensagem.mensagem)
+        return HttpResponse('Mensagens enviadas com sucesso')
     except Exception as e:
         print(e)
+        return HttpResponse('Erro ao enviar mensagem')
     finally:
         resposta.EncerrarPrograma()
-    return HttpResponse('Mensagens enviadas')
+
 
 def EditarCliente(request, cliente_id):
     cliente = Cliente.objects.get(id=cliente_id)
