@@ -14,6 +14,9 @@
                     <th scope="col">ID</th>
                     <th scope="col">Data de criação</th>
                     <th scope="col">Mensagem</th>
+                    <th scope="col">Enviar Mensagem</th>
+                    <th scope="col">Editar Mensagem</th>
+                    <th scope="col">Deletar Mensagem</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,13 +27,20 @@
                     <td>{{ mensagens.mensagem }}</td>
                     
                     <td>
-                        <a href="{%url 'enviar-mensagem' mensagens.id %}">Enviar mensagem</a>
+                        <a href="{%url 'enviar-mensagem' mensagens.id %}">
+                            <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/enviar_icon.png' %}" alt="">
+                        </a>
                     </td>
                     <td>
-                        <a href="{% url 'editar-mensagem' mensagens.id %}">Editar Mensagem</a>
+                        <a href="{% url 'editar-mensagem' mensagens.id %}">
+                            <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/editar_icon.png' %}" alt="Editar mensagem">
+                        </a>
+                        </a>
                     </td>
                     <td>
-                        <a href="{% url 'deletar-mensagem' mensagens.id %}">Deletar Mensagem</a>
+                        <a href="{% url 'deletar-mensagem' mensagens.id %}">
+                            <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/deletar_icon.png' %}" alt="Deletar mensaem">
+                        </a>
                     </td>
                     </tr>
                 {% endfor %}
