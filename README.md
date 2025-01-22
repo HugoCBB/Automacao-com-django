@@ -13,8 +13,8 @@ Este é um sistema de automação desenvolvido com Django + Selenium, permitindo
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/{ Seu nome usuario }/Automacao-com-django.git
-    cd seu-repositorio
+    git clone https://github.com/HugoCBB/Automacao-com-django.git
+    cd Automacao-com-django
     ```
 
 2. Crie e ative um ambiente virtual:
