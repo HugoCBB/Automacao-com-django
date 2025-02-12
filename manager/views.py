@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.shortcuts import get_object_or_404
-from . selenium_service import SUN_BOT
+from .selenium.bot_envio_mensagens import SUN_BOT
 
 from . models import Cliente, Mensagem
 from . forms import MensagemForm, ClienteForm
