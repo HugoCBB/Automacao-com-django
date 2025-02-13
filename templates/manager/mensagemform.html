@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div style="text-align: center;justify-content: center;">
+<div style="text-align: center;justify-content: center; list-style: none;">
     <form action="{% url 'adicionar-mensagens' %}" method="POST">
         {% csrf_token %}
         {{ form }}

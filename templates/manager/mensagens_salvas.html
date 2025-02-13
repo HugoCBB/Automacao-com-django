@@ -1,5 +1,5 @@
 {% extends 'shared/base.html' %} 
-{% load static %}  
+{% load static %} 
 
 {% block titulo %}
 <title>Mensagens Salvas</title>
@@ -20,6 +20,7 @@
                 </tr>
             </thead>
             <tbody>
+                
                 {% for mensagens in mensagem %}
                 <tr>
                     <th scope="row">{{ mensagens.id }}</th>
@@ -47,6 +48,10 @@
             </tbody>
         </table>
     </div>
+    {% else %}
+        <h1 style="justify-content: center;text-align: center;display: flex;font-size: 32px;height: 100vh;">
+            Sem mensagens registradas
+        </h1>
     {% endif %}
 
     
