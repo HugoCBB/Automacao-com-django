@@ -11,6 +11,7 @@ from time import sleep
 
 class SUN_BOT:
     def __init__(self):
+        
         self.service = Service(ChromeDriverManager().install()) 
         self.options = Options()
         self.options.add_argument("--disable-blink-features=AutomationControlled")
@@ -24,8 +25,11 @@ class SUN_BOT:
         print("Aguardando QRCode")
         sleep(90)
 
-    def EnviarMensagem(self, numero, mensagens):
+    def EnviarMensagem(self,nome ,numero, mensagens):
         # Procurar contato
+
+
+
         url = f"https://web.whatsapp.com/send?phone={numero}"
         self.driver.get(url)
         sleep(5)
@@ -36,11 +40,11 @@ class SUN_BOT:
         # Mensagem
         mensagem = self.driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')
         mensagem.click()
-        mensagem.send_keys(mensagens)
+        mensagem.send_keys(f"Ola {nome}, {mensagens}")
         mensagem.send_keys(Keys.RETURN)
         sleep(5)
 
     def EncerrarPrograma(self):
+        
         self.driver.quit()
-
 

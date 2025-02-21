@@ -27,7 +27,7 @@ def AdicionarCliente(request):
 
         if form.is_valid():
             form.save()
-            return redirect('clientes-salvos')
+            return redirect('adicionar-cliente')
     return render(request, 'manager/clienteform.html',{'form':form})
 
 # Criar nova mensagem
@@ -52,7 +52,7 @@ def EnviarMensagens(request, mensagem_id):
         resposta = SUN_BOT()
         resposta.AcessarSite()
         for cliente in clientes:
-            resposta.EnviarMensagem(cliente.numero, mensagem.mensagem)
+            resposta.EnviarMensagem(cliente.nome, cliente.numero, mensagem.mensagem)
         return HttpResponse('Mensagens enviadas com sucesso')
     except Exception as e:
         print(e)
