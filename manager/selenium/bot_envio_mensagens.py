@@ -27,22 +27,26 @@ class SUN_BOT:
 
     def EnviarMensagem(self,nome ,numero, mensagens):
         # Procurar contato
+        try:
+            url = f"https://web.whatsapp.com/send?phone={numero}"
+            self.driver.get(url)
+            
 
-
-
-        url = f"https://web.whatsapp.com/send?phone={numero}"
-        self.driver.get(url)
-        sleep(5)
-
-        # Esperar o campo de mensagem aparecer
-        self.wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')))
-        
-        # Mensagem
-        mensagem = self.driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')
-        mensagem.click()
-        mensagem.send_keys(f"Ola {nome}, {mensagens}")
-        mensagem.send_keys(Keys.RETURN)
-        sleep(5)
+            # Esperar o campo de mensagem aparecer
+            self.wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')))
+            
+            # Mensagem
+            mensagem = self.driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')
+            mensagem.click()
+            if nome == "sem nome":
+                mensagem.send_keys(f"Ola, tudo bem contigo? f{mensagens}")
+            else:
+                mensagem.send_keys(f"Ola {nome}, tudo bem contigo? {mensagens}")
+                
+            mensagem.send_keys(Keys.RETURN)
+            sleep(3)
+        except Exception as e:
+            print(f"erro ao disparar mensagem: \nNumero:f{numero}\nNome:f{nome}")
 
     def EncerrarPrograma(self):
         
