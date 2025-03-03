@@ -5,8 +5,8 @@ import re
 
 class Cliente(models.Model):
     ESTADO_DO_CLIENTE = [
-        ('Matriculado', 'Matriculado'),
         ('Não Matriculado', 'Não Matriculado'),
+        ('Matriculado', 'Matriculado'),
     ]
     data = models.DateField(auto_now_add=True)
     nome = models.CharField(max_length=30)
@@ -20,8 +20,8 @@ class Cliente(models.Model):
 class Mensagem(models.Model):
     data = models.DateField(auto_now_add=True)
     mensagem = models.TextField(max_length=500)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.mensagem
-    
     

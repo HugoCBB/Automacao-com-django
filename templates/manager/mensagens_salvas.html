@@ -14,6 +14,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Data de criação</th>
                     <th scope="col">Mensagem</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Enviar Mensagem</th>
                     <th scope="col">Editar Mensagem</th>
                     <th scope="col">Deletar Mensagem</th>
@@ -26,6 +27,13 @@
                     <th scope="row">{{ mensagens.id }}</th>
                     <td>{{ mensagens.data }}</td>
                     <td>{{ mensagens.mensagem }}</td>
+                    
+                    {% if mensagens.status == True %} 
+                        <td>Enviada</td> 
+                    {% else %} 
+                        <td>Não enviada</td> 
+                    {% endif %}    
+                    
                     
                     <td>
                         <a href="{%url 'enviar-mensagem' mensagens.id %}">

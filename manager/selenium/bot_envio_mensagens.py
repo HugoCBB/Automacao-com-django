@@ -23,7 +23,7 @@ class SUN_BOT:
         link = 'https://web.whatsapp.com/'
         self.driver.get(link)
         print("Aguardando QRCode")
-        sleep(90)
+        sleep(30)
 
     def EnviarMensagem(self,nome ,numero, mensagens):
         # Procurar contato
@@ -39,14 +39,14 @@ class SUN_BOT:
             mensagem = self.driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[1]/div/div[1]/p')
             mensagem.click()
             if nome == "sem nome":
-                mensagem.send_keys(f"Ola, tudo bem contigo? f{mensagens}")
+                mensagem.send_keys(f"Ola, tudo bem contigo? {mensagens}")
             else:
                 mensagem.send_keys(f"Ola {nome}, tudo bem contigo? {mensagens}")
                 
             mensagem.send_keys(Keys.RETURN)
-            sleep(3)
+            sleep(5)
         except Exception as e:
-            print(f"erro ao disparar mensagem: \nNumero:f{numero}\nNome:f{nome}")
+            print(f"erro ao disparar mensagem: \nNumero:{numero}\nNome:{nome}")
 
     def EncerrarPrograma(self):
         
