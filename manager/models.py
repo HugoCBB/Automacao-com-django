@@ -1,5 +1,4 @@
 from django.db import models
-import re
 
 # Create your models here.
 
@@ -12,7 +11,7 @@ class Cliente(models.Model):
     nome = models.CharField(max_length=30)
     numero = models.CharField(max_length=15, blank=False, null=False)
     matriculado = models.CharField(max_length=15, choices=ESTADO_DO_CLIENTE, default='Não Matriculado')
-
+    
     def __str__(self):
         return self.nome
     

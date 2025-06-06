@@ -1,0 +1,64 @@
+{% extends 'shared/base.html' %} 
+{% load static %} 
+
+{% block titulo %}
+<title>Mensagens Salvas</title>
+{% endblock %}
+
+{% block content %}
+    {% if mensagem %}
+    <div class="d-flex justify-content-center">
+        <table class="table table-striped" style="width: 70%">
+            <thead>
+                <tr>
+                    <th scope="col">Data de criação</th>
+                    <th scope="col">Mensagem</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Enviar Mensagem</th>
+                    <th scope="col">Editar Mensagem</th>
+                    <th scope="col">Deletar Mensagem</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for mensagens in mensagem %}
+                <tr>
+                    <td>{{ mensagens.data }}</td>
+                    <td>{{ mensagens.mensagem }}</td>
+                    
+                    {% if mensagens.status == True %} 
+                        <td>Enviada</td> 
+                    {% else %} 
+                        <td>Não enviada</td> 
+                    {% endif %}    
+                    
+                    
+                    <td>
+                        <a href="{%url 'enviar-mensagem' mensagens.id %}">
+                            <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/enviar_icon.png' %}" alt="">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'editar-mensagem' mensagens.id %}">
+                            <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/editar_icon.png' %}" alt="Editar mensagem">
+                        </a>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'deletar-mensagem' mensagens.id %}">
+                            <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/deletar_icon.png' %}" alt="Deletar mensaem">
+                        </a>
+                    </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <h1 style="justify-content: center;text-align: center;display: flex;font-size: 32px;height: 100vh;">
+            Sem mensagens registradas
+        </h1>
+    {% endif %}
+
+    
+{% endblock %}

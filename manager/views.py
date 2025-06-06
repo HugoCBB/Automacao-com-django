@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.shortcuts import get_object_or_404
-from .selenium.bot_envio_mensagens import SUN_BOT
+from automation.selenium.bot_envio_mensagens import SUN_BOT
 
 from . models import Cliente, Mensagem
 from . forms import MensagemForm, ClienteForm
@@ -12,11 +12,11 @@ def home(request):
 
 def ClientesSalvos(request):
     clientes = Cliente.objects.all()
-    return render(request, 'manager/clientes_salvos.html',{'clientes':clientes})
+    return render(request, 'manager/cliente/clientesSalvos.html',{'clientes':clientes})
 
 def MensagensSalvas(request):
     mensagem = Mensagem.objects.all()
-    return render(request,'manager/mensagens_salvas.html',{'mensagem':mensagem})
+    return render(request,'manager/mensagem/mensagensSalvas.html',{'mensagem':mensagem})
 
 # Cadastrar novo cliente
 def AdicionarCliente(request):
@@ -28,7 +28,7 @@ def AdicionarCliente(request):
         if form.is_valid():
             form.save()
             return redirect('adicionar-cliente')
-    return render(request, 'manager/clienteform.html',{'form':form})
+    return render(request, 'manager/cliente/clienteForm.html',{'form':form})
 
 # Criar nova mensagem
 def AdicionarMensagem(request):
@@ -41,7 +41,7 @@ def AdicionarMensagem(request):
             form.save()
             return redirect('mensagens-salvas')
 
-    return render(request, 'manager/mensagemform.html',{'form':form})
+    return render(request, 'manager/mensagem/mensagemForm.html',{'form':form})
 
 
 # Enviar mensagem
@@ -71,7 +71,7 @@ def EditarCliente(request, cliente_id):
         form = ClienteForm(request.POST, instance=cliente)
         form.save()
         return redirect('clientes-salvos')
-    return render(request, 'manager/editar_cliente.html',{'form':form, 'cliente_id':cliente_id})
+    return render(request, 'manager/cliente/editarCliente.html',{'form':form, 'cliente_id':cliente_id})
 
 def EditarMensagem(request, mensagem_id):
     mensagem = Mensagem.objects.get(id=mensagem_id)
@@ -80,7 +80,7 @@ def EditarMensagem(request, mensagem_id):
         form = MensagemForm(request.POST, instance=mensagem)
         form.save()
         return redirect('mensagens-salvas')
-    return render(request, 'manager/editar_mensagem.html',{'form':form, 'mensagem_id':mensagem_id})
+    return render(request, 'manager/mensagem/editarMensagem.html',{'form':form, 'mensagem_id':mensagem_id})
 
 
 def DeletarCliente(request, cliente_id):
