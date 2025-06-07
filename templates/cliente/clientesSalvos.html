@@ -13,7 +13,7 @@
                 <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">Numero</th>
-                    <th scope="col">Matriculado</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Editar Cliente</th>
                     <th scope="col">Deletar Cliente </th>
                 </tr>
@@ -23,7 +23,16 @@
                     <tr>
                         <td>{{ cliente.nome }}</td>
                         <td>{{ cliente.numero }}</td>
-                        <td>{{ cliente.matriculado }} </td>
+
+                        {% if cliente.status == "Ativo" %}
+                            <strong>
+                                <td style="color: green;">{{ cliente.status }}</td>
+                            </strong>
+                        {% else %}
+                            <strong>
+                                <td style="color: red;">{{ cliente.status }}</td>
+                            </strong>
+                        {% endif %}
                         <td>
                             <a href="{% url 'editar-cliente' cliente.id %}">
                                 <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/editar_icon.png' %}" alt="Editar Cliente">
@@ -33,8 +42,8 @@
                             <a href="{% url 'deletar-cliente' cliente.id %}">
                                 <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/deletar_icon.png' %}" alt="Deletar Cliente">
                             </a>
-                            </a>
-                        </td>
+                        </a>
+                    </td>
                     </tr>
                 {% endfor %}
             </tbody>
