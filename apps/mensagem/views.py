@@ -34,8 +34,8 @@ def EnviarMensagens(request, mensagem_id):
     clientes = Cliente.objects.filter(status='Ativo')
     mensagem = get_object_or_404(Mensagem, pk=mensagem_id)
 
+    resposta = None
     try:
-        
         resposta = SUN_BOT()
         resposta.AcessarSite()
         for cliente in clientes:
@@ -46,9 +46,6 @@ def EnviarMensagens(request, mensagem_id):
     except Exception as e:
         print(e)
         return HttpResponse('Erro ao enviar mensagem')
-    finally:
-        resposta.EncerrarPrograma()
-
 
 def DeletarMensagem(request, mensagem_id):
     mensagem = Mensagem.objects.get(id=mensagem_id)

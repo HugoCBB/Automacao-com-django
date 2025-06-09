@@ -3,7 +3,7 @@ from .views import EnviarMensagens, AdicionarMensagem, MensagensSalvas, DeletarM
 
 
 urlpatterns = [
-    path('home', home, name='home'),
+    path('', home, name='home'),
     path('enviar-mensagem/<int:mensagem_id>', EnviarMensagens, name='enviar-mensagem'),
     path('adicionar-mensagem', AdicionarMensagem, name='adicionar-mensagens'),
     path('mensagens-salvas', MensagensSalvas, name='mensagens-salvas'),
