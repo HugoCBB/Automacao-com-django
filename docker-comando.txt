@@ -1,0 +1,3 @@
+// Rodar imagem 
+docker run -d -p [ porta_docker:porta_sistema] imagem (ex: hugocbb/app-django:1.0(versao))
+

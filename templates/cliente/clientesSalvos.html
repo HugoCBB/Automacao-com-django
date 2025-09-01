@@ -1,0 +1,59 @@
+{% extends 'shared/base.html' %} 
+{% load static %}  
+
+{% block titulo %}
+<title>Clientes Salvos</title>
+{% endblock %}
+
+{% block content %}
+    {% if clientes %}
+    <div class="d-flex justify-content-center">
+        <table class="table table-striped" style="width: 70%">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Editar Cliente</th>
+                    <th scope="col">Deletar Cliente </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.nome }}</td>
+                        <td>{{ cliente.numero }}</td>
+
+                        {% if cliente.status == "Ativo" %}
+                            <strong>
+                                <td style="color: green;">{{ cliente.status }}</td>
+                            </strong>
+                        {% else %}
+                            <strong>
+                                <td style="color: red;">{{ cliente.status }}</td>
+                            </strong>
+                        {% endif %}
+                        <td>
+                            <a href="{% url 'editar-cliente' cliente.id %}">
+                                <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/editar_icon.png' %}" alt="Editar Cliente">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'deletar-cliente' cliente.id %}">
+                                <img style="height: 30px;width: 30px;" src="{% static 'assets/icon/deletar_icon.png' %}" alt="Deletar Cliente">
+                            </a>
+                        </a>
+                    </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <h1 style="justify-content: center;text-align: center;display: flex;font-size: 32px;height: 100vh;">
+            Sem alunos registradas
+        </h1>
+    {% endif %}
+
+    
+{% endblock %}
