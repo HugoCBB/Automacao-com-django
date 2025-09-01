@@ -48,11 +48,14 @@ def AdicionarMensagem(request):
 def EnviarMensagens(request, mensagem_id):
     clientes = Cliente.objects.filter(matriculado='Não Matriculado')
     mensagem = get_object_or_404(Mensagem, pk=mensagem_id)
+
     try:
         resposta = SUN_BOT()
         resposta.AcessarSite()
         for cliente in clientes:
             resposta.EnviarMensagem(cliente.nome, cliente.numero, mensagem.mensagem)
+        mensagem.status = True
+        mensagem.save()
         return HttpResponse('Mensagens enviadas com sucesso')
     except Exception as e:
         print(e)
